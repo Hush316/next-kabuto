@@ -1,20 +1,29 @@
-import { useState } from 'react'
-import Todo from './components/Todo'
-import Modal from './components/Modal'
-import Backdrop from './components/Backdrop'
-
+import { Suspense } from 'react'
+import { Link, useRoutes } from 'react-router-dom'
+import routes from './router'
 
 function App() {
-
   return (
     <div className="App">
-      <h2>react-app</h2>
-      <Todo text="learn-react"></Todo>
-      <Todo text="learn-vue"></Todo>
-      <Todo text="learn-egg"></Todo>
-
-      <Modal></Modal>
-      <Backdrop></Backdrop>
+      <div className="nav">
+        <h2>NAV MENUS</h2>
+        <ul>
+          <li>
+            <Link to="/">AllMeetupsPage</Link>
+          </li>
+          <li>
+            <Link to="/favorites">FavoritesPage</Link>
+          </li>
+          <li>
+            <Link to="/new-meetup">NewMeetups</Link>
+          </li>
+        </ul>
+      </div>
+      <Suspense fallback="loading">
+        <div className="main">
+          {useRoutes(routes)}
+        </div>
+      </Suspense>
     </div>
   )
 }
